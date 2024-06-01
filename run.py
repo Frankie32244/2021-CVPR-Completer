@@ -25,6 +25,7 @@ from util import cal_std, get_logger
 from datasets import *
 from configure import get_default_config
 
+
 dataset = {
     0: "Caltech101-20",
     1: "Scene_15",
@@ -60,7 +61,7 @@ def main():
         if isinstance(v, dict):
             logger.info("%s={" % (k))
             for (g, z) in v.items():
-                logger.info("          %s = %s" % (g, z))
+                logger.info("          %s = %s" % (g, z))     
         else:
             logger.info("%s = %s" % (k, v))
 
@@ -83,7 +84,7 @@ def main():
         x2_train = torch.from_numpy(x2_train).float().to(device)
         mask = torch.from_numpy(mask).long().to(device)
 
-        # Set random seeds
+        # Set random seeds    ??? 
         if config['training']['missing_rate'] == 0:
             seed = data_seed
         else:
@@ -94,7 +95,7 @@ def main():
         torch.cuda.manual_seed(seed + 3)
         torch.backends.cudnn.deterministic = True
 
-        # Build the model
+        # Build the model  ??? 
         COMPLETER = Completer(config)
         optimizer = torch.optim.Adam(
             itertools.chain(COMPLETER.autoencoder1.parameters(), COMPLETER.autoencoder2.parameters(),
