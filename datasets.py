@@ -42,7 +42,7 @@ def load_data(config):
         Y_list.append(np.concatenate([np.squeeze(tune.labels[:, 0]), np.squeeze(test.labels[:, 0])]))
 
     elif data_name in ['Caltech101-20']:
-        mat = sio.loadmat(os.path.join(main_dir, 'data', data_name + '.mat'))
+        mat = sio.loadmat(os.path.join(main_dir, 'data', data_name + '.mat'))        # 加载存储在 MATLAB 文件中的数据。
         X = mat['X'][0]
         for view in [3, 4]:
             x = X[view]
