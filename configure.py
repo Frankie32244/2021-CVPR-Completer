@@ -1,6 +1,6 @@
 # 每个数据集的配置不同，以下是这四个数据集的配置情况。
 def get_default_config(data_name):
-    if data_name in ['Caltech101-20']:
+    if data_name in ['Caltech101-20']:       #101个物体图片的数据集
         return dict(
             Prediction=dict(
                 arch1=[128, 256, 128],
@@ -27,7 +27,7 @@ def get_default_config(data_name):
             ),
         )
 
-    elif data_name in ['Scene_15']:
+    elif data_name in ['Scene_15']:        #15种场景下的图片数据集
         """The default configs."""
         return dict(
             Prediction=dict(
