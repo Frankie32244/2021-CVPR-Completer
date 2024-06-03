@@ -7,11 +7,16 @@ def get_default_config(data_name):
                 arch2=[128, 256, 128],
             ),
             Autoencoder=dict(
-                arch1=[1984, 1024, 1024, 1024, 128],  # the last number is the dimension of latent representation
+                arch1=[1984, 1024, 1024, 1024, 128],  # the last number is the dimension of latent representation 
+                #------------------------------------------------------------------------------------------------
+                # 表示这个自编码器子网络有五层，第一层有 1984 个神经元，
+                # 第二层、第三层和第四层各有 1024 个神经元，最后一层（也称为潜在表示层或瓶颈层）有 128 个神经元。
+                # 最后一层的神经元数量通常是用于特征表示的维度。
+                #------------------------------------------------------------------------------------------------
                 arch2=[512, 1024, 1024, 1024, 128],  # the last number in arch1 and arch2 should be the same
-                activations1='relu',
-                activations2='relu',
-                batchnorm=True,
+                activations1='relu',                 # 表示在 arch1 子网络的每一层都应用 ReLU 激活函数。
+                activations2='relu',                 # 表示在 arch2 子网络的每一层也都应用 ReLU 激活函数。
+                batchnorm=True,                      # 批归一化处理
             ),
             training=dict(
                 seed=4,
@@ -108,4 +113,4 @@ def get_default_config(data_name):
             ),
         )
     else:
-        raise Exception('Undefined data_name')
+        raise Exception('Undefined data_name')                # 如果 data_name 不在上述数据集中，函数会抛出异常：
