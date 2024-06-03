@@ -1,3 +1,4 @@
+# 每个数据集的配置不同，以下是这四个数据集的配置情况。
 def get_default_config(data_name):
     if data_name in ['Caltech101-20']:
         return dict(
