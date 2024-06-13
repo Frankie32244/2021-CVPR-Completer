@@ -1,3 +1,4 @@
+# 对数据集进行处理，提取特征并存储标签
 import os, random, sys
 import numpy as np
 import scipy.io as sio           #用于读取和写入Matlab文件
