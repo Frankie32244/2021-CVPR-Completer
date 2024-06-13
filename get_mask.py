@@ -1,3 +1,4 @@
+# 生成一个掩码矩阵，用于模仿缺失视图。并且有设置缺失率
 import numpy as np
 from numpy.random import randint
 from sklearn.preprocessing import OneHotEncoder
@@ -14,8 +15,8 @@ def get_mask(view_num, data_len, missing_rate):
           mask
 
     """
-    missing_rate = missing_rate / view_num
-    one_rate = 1.0 - missing_rate
+    missing_rate = missing_rate / view_num                # 每个视图的缺失率
+    one_rate = 1.0 - missing_rate                         # 每个视图的保留率
     if one_rate <= (1 / view_num):
         enc = OneHotEncoder()
         view_preserve = enc.fit_transform(randint(0, view_num, size=(data_len, 1))).toarray()
