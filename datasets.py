@@ -1,8 +1,8 @@
 import os, random, sys
 import numpy as np
-import scipy.io as sio
+import scipy.io as sio           #用于读取和写入Matlab文件
 import util
-from scipy import sparse
+from scipy import sparse         #用于处理稀疏矩阵 
 
 
 def load_data(config):
