@@ -13,23 +13,23 @@ def load_data(config):
     Y_list = []
 
     if data_name in ['Scene_15']:
-        mat = sio.loadmat(os.path.join(main_dir, 'data', 'Scene-15.mat'))
-        X = mat['X'][0]
-        X_list.append(X[0].astype('float32'))
-        X_list.append(X[1].astype('float32'))
-        Y_list.append(np.squeeze(mat['Y']))
+        mat = sio.loadmat(os.path.join(main_dir, 'data', 'Scene-15.mat'))    # 从 MATLAB 文件中读取数据，并将其存储在 mat 中。
+        X = mat['X'][0]                              # mat['X'][0]代表第一个特征矩阵
+        X_list.append(X[0].astype('float32'))        # 将第一个特征矩阵转换为 float32 类型，并添加到 X_list 列表中。
+        X_list.append(X[1].astype('float32'))        # 将第二个特征矩阵转换为 float32 类型，并添加到 X_list 列表中。
+        Y_list.append(np.squeeze(mat['Y']))          # 从字典 mat 中提取标签矩阵 Y，使用 np.squeeze 函数去除单维度条目，并添加到 Y_list 列表中。
 
     elif data_name in ['LandUse_21']:
-        mat = sio.loadmat(os.path.join(main_dir, 'data', 'LandUse-21.mat'))
-        train_x = []
-        train_x.append(sparse.csr_matrix(mat['X'][0, 0]).A)  # 20
-        train_x.append(sparse.csr_matrix(mat['X'][0, 1]).A)  # 59
-        train_x.append(sparse.csr_matrix(mat['X'][0, 2]).A)  # 40
-        index = random.sample(range(train_x[0].shape[0]), 2100)
+        mat = sio.loadmat(os.path.join(main_dir, 'data', 'LandUse-21.mat'))   # 从 MATLAB 文件中读取数据集LandUse_21，并将其存储在 mat 中。
+        train_x = []                                                          # 用于存储特证矩阵
+        train_x.append(sparse.csr_matrix(mat['X'][0, 0]).A)                   # 20   代表着特征维度         
+        train_x.append(sparse.csr_matrix(mat['X'][0, 1]).A)                   # 59
+        train_x.append(sparse.csr_matrix(mat['X'][0, 2]).A)                   # 40
+        index = random.sample(range(train_x[0].shape[0]), 2100)               # 从第一个特征矩阵 train_x[0] 的样本数中随机抽取 2100 个样本索引，存储在 index 列表中。
         for view in [1, 2]:
             x = train_x[view][index]
             X_list.append(x)
-        y = np.squeeze(mat['Y']).astype('int')[index]
+        y = np.squeeze(mat['Y']).astype('int')[index]                         # 使用抽取的索引 index 提取相应的标签。
         Y_list.append(y)
 
     elif data_name in ['NoisyMNIST']:
